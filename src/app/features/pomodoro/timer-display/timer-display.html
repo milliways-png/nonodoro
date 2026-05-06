@@ -4,9 +4,9 @@
 
 <div class="controls-container">
     <button (click)="toggleTimer()" class="button-style" mat-raised-button>
-        start/pause
+    {{ isRunning ? 'Pause' : ( (countdown$ | async) === 120 ? 'Start' : 'Continue' ) }}
     </button>
-    <button class="button-style" mat-raised-button>
-        stop
+    <button (click)="reset()" class="button-style" mat-raised-button>
+        Restart
     </button>
 </div>

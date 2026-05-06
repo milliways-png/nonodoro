@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, afterNextRender } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button'
 import { timer, Subscription, Observable, BehaviorSubject } from 'rxjs';
 import { take, map } from 'rxjs/operators';
@@ -12,10 +12,17 @@ import { AsyncPipe } from '@angular/common';
   styleUrl: './timer-display.css',
 })
 export class TimerDisplay {
+  private audio?: HTMLAudioElement;
+  constructor() {
+    // Audio olny available in browser and since NodeJS is server we need this so that it runs in browser or sm like that idk.
+    afterNextRender(() => {
+      this.audio = new Audio('assets/alert.mp3');
+    });
+  }
   timeLeft: number = 0;
   isRunning: boolean = false;
 
-  initialSeconds: number = 120; // 120 secs = 2 min
+  initialSeconds: number = 30; // TODO: change into actual time (25min)
   private countdownSource = new BehaviorSubject<number>(this.initialSeconds);
   countdown$ = this.countdownSource.asObservable();
 
@@ -37,7 +44,6 @@ export class TimerDisplay {
   }
 
   start() {
-    // avoid multiple subscriptions
     if (this.isRunning){return}; // avoid duplicate instances
 
     this.isRunning = true;
@@ -49,8 +55,21 @@ export class TimerDisplay {
       map(tick => currentSeconds - tick)
     ).subscribe({
       next: (val) => this.countdownSource.next(val),
-      complete: () => (this.isRunning = false)
+      complete: () => {
+        this.isRunning = false;
+        this.playAudio();
+      }
     });
+  }
+
+  private playAudio() {
+    if (this.audio) {
+      this.audio.play().catch(error => {
+        console.error("Error while playing sound:", error);
+      });
+    } else {
+      console.warn("audio is not initialized or this is not a browser.");
+    }
   }
 
   reset() {

@@ -2,11 +2,10 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { TimerDisplay } from './features/pomodoro/timer-display/timer-display'; 
-import { TimerControls } from './features/pomodoro/timer-controls/timer-controls';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, DatePipe, TimerDisplay, TimerControls],
+  imports: [RouterOutlet, DatePipe, TimerDisplay],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

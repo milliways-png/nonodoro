@@ -1,4 +1,12 @@
-
 <div class="timer">
-    00:00
+    time left: {{ (countdown$ | async)! * 1000 | date:'mm:ss'}}
+</div>
+
+<div class="controls-container">
+    <button (click)="start()" [disabled]="running" class="button-style" mat-raised-button>
+        start/pause
+    </button>
+    <button class="button-style" mat-raised-button>
+        stop
+    </button>
 </div>

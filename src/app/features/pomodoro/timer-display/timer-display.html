@@ -1,5 +1,5 @@
 <div class="timer">
-    time left: {{ (countdown$ | async)! * 1000 | date:'mm:ss'}}
+    {{ (countdown$ | async)! * 1000 | date:'mm:ss'}}
 </div>
 
 <div class="controls-container">

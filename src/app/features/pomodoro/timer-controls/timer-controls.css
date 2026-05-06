@@ -1,0 +1,12 @@
+.controls-container{
+    margin: 2rem;
+    display: flex;
+    background-color: cadetblue;
+}
+
+.button-style {
+    margin: 1rem 2rem;
+    padding: 2rem 4rem;
+    font-size: 1.5rem;
+    width: 100%;
+}

@@ -1,13 +1,15 @@
 .timer {
     padding: 2rem;
     margin: 2rem;
-    background-color: cornflowerblue;
+    background-color: inherit;
     font-size: 6rem;
+    text-align: center;
+    color: #2D284F;
 }
 .controls-container{
     margin: 2rem;
     display: flex;
-    background-color: cadetblue;
+    background-color: inherit;
 }
 
 .button-style {
@@ -15,4 +17,8 @@
     padding: 2rem 4rem;
     font-size: 1.5rem;
     width: 100%;
+    background-color: #919ACF;
+    color: #674AB6;
+    --mat-button-protected-label-text-color: #F2F3E4;
+    --mat-button-protected-container-color: #919ACF;
 }

@@ -22,7 +22,7 @@ export class TimerDisplay {
   private timerSub?: Subscription;
   
   start() {
-    // Evitamos múltiples suscripciones si hacen clic varias veces
+    // avoid multiple subscriptions
     if (this.timerSub) this.timerSub.unsubscribe();
 
     this.timerSub = timer(0, 1000).pipe(
